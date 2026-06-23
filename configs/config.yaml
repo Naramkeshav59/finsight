@@ -1,0 +1,50 @@
+companies:
+  - ticker: AAPL
+    cik: "0000320193"
+    name: Apple Inc.
+    years: [2021, 2022, 2023]
+  - ticker: JPM
+    cik: "0000019617"
+    name: JPMorgan Chase & Co.
+    years: [2021, 2022, 2023]
+  - ticker: JNJ
+    cik: "0000200406"
+    name: Johnson & Johnson
+    years: [2021, 2022, 2023]
+
+chunking:
+  fixed:
+    chunk_size: 512        # tokens
+    chunk_overlap: 50      # tokens
+  recursive:
+    chunk_size: 512        # tokens
+    chunk_overlap: 50      # tokens
+  section:
+    chunk_size: 512        # tokens per sub-chunk within a section
+    chunk_overlap: 50
+
+embedding:
+  model: "BAAI/bge-small-en-v1.5"
+
+retrieval:
+  vector_only:
+    top_k: 10
+  hybrid:
+    top_k: 10
+    vector_weight: 0.5
+    bm25_weight: 0.5
+  hybrid_rerank:
+    top_k: 10
+    vector_weight: 0.5
+    bm25_weight: 0.5
+    reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    rerank_top_k: 5        # how many to keep after reranking
+
+generation:
+  model: "llama3.1:8b-instruct-q4_0"
+  temperature: 0.1         # low = more factual, less creative
+  max_tokens: 512
+
+paths:
+  raw_data: "data/raw"
+  chroma_db: "data/chroma"

@@ -1,0 +1,50 @@
+[
+  {
+    "question": "What are Apple's main risk factors related to competition?",
+    "ground_truth": "Apple faces intense competition across all its markets from companies with significant resources. In smartphones, it competes with Android-based manufacturers. In personal computers, it competes with Windows-based systems. The company's competitive position depends on continued innovation and the strength of its ecosystem.",
+    "ticker": "AAPL",
+    "year": 2023
+  },
+  {
+    "question": "How does Apple describe the risks associated with its supply chain?",
+    "ground_truth": "Apple relies on single or limited sources for certain components and manufactures most of its products outside the United States, primarily in Asia. Disruptions from natural disasters, political instability, or supplier failures could adversely affect product availability and financial results.",
+    "ticker": "AAPL",
+    "year": 2023
+  },
+  {
+    "question": "What does Apple identify as its key sources of revenue?",
+    "ground_truth": "Apple generates revenue from iPhone sales, Mac, iPad, wearables and accessories, and Services including the App Store, Apple Music, iCloud, Apple TV+, and Apple Pay. Services has been a growing segment contributing recurring revenue.",
+    "ticker": "AAPL",
+    "year": 2022
+  },
+  {
+    "question": "What regulatory and legal risks does Apple disclose?",
+    "ground_truth": "Apple faces regulatory scrutiny regarding its App Store practices, antitrust investigations in multiple jurisdictions, and data privacy requirements across different countries. Changes in tax laws and foreign government regulations also pose risks.",
+    "ticker": "AAPL",
+    "year": 2021
+  },
+  {
+    "question": "What are Johnson & Johnson's primary business segments?",
+    "ground_truth": "Johnson & Johnson operates through three business segments: Pharmaceutical, Medical Devices, and Consumer. The Pharmaceutical segment is the largest contributor to revenue, focused on areas including oncology, immunology, and infectious diseases.",
+    "ticker": "JNJ",
+    "year": 2023
+  },
+  {
+    "question": "What litigation risks does Johnson & Johnson face?",
+    "ground_truth": "Johnson & Johnson faces significant litigation related to talc-based products, opioid settlements, and various product liability claims. The company has established legal reserves and pursued settlement strategies for certain mass tort liabilities.",
+    "ticker": "JNJ",
+    "year": 2023
+  },
+  {
+    "question": "How does Johnson & Johnson describe its approach to research and development?",
+    "ground_truth": "Johnson & Johnson invests heavily in R&D across its business segments, with a focus on innovative pharmaceutical compounds, medical device technology, and consumer health products. The company collaborates with external partners and acquires early-stage technologies to supplement internal development.",
+    "ticker": "JNJ",
+    "year": 2022
+  },
+  {
+    "question": "What are the main competitive factors in Johnson & Johnson's pharmaceutical segment?",
+    "ground_truth": "Competition in the pharmaceutical segment comes from other large pharmaceutical companies and biotechnology firms. Key competitive factors include efficacy and safety of products, pricing, manufacturing capability, and the ability to develop or acquire new compounds. Generic competition after patent expiry poses a significant revenue risk.",
+    "ticker": "JNJ",
+    "year": 2021
+  }
+]

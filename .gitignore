@@ -1,0 +1,23 @@
+# virtual env
+finsight/
+
+# vector store — too large for git (180 MB); rebuild with: python src/embed.py
+data/chroma/
+
+# benchmark output — generated artifact
+data/benchmark_results.csv
+
+# raw filings — small (6 MB), committed so Streamlit Cloud can rebuild indexes
+# data/raw/   ← intentionally NOT ignored
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# streamlit secrets — copy secrets.toml.example → .streamlit/secrets.toml
+.streamlit/secrets.toml
+
+# editors
+.vscode/settings.json

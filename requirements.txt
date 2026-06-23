@@ -1,0 +1,16 @@
+requests
+beautifulsoup4
+pyyaml
+tiktoken
+
+sentence-transformers
+chromadb
+
+rank-bm25
+nltk
+
+streamlit
+pandas
+
+ollama
+openai
