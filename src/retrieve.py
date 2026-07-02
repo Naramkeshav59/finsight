@@ -3,8 +3,7 @@ from __future__ import annotations
 import numpy as np
 from rank_bm25 import BM25Okapi
 
-from embed import EmbeddingIndex
-from chunking import load_config
+from embed import EmbeddingIndex, load_config
 
 
 class HybridRetriever:
