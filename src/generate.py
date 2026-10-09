@@ -99,6 +99,11 @@ def generate_diff(
     """
     cfg = config["generation"]
 
+    # Top chunks per year only: 10 + 10 chunks of ~512 tokens (~10K tokens)
+    # exceeds hosted per-request limits (Groq free tier: 8K/min), and the
+    # highest-ranked chunks carry the comparison anyway.
+    per_year = cfg.get("diff_chunks_per_year", 4)
+    chunks_year1, chunks_year2 = chunks_year1[:per_year], chunks_year2[:per_year]
     block1 = _build_context_block(chunks_year1)
     block2 = _build_context_block(chunks_year2)
 
