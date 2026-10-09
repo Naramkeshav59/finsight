@@ -211,11 +211,11 @@ with tab_bench:
         with col1:
             st.subheader("Answer similarity by strategy")
             pivot = df.pivot(index="chunking", columns="retrieval", values="answer_similarity")
-            st.bar_chart(pivot)
+            st.bar_chart(pivot, stack=False)  # grouped: stacking would sum similarities past 1.0
         with col2:
             st.subheader("Latency (s) by strategy")
             pivot_lat = df.pivot(index="chunking", columns="retrieval", values="avg_latency_s")
-            st.bar_chart(pivot_lat)
+            st.bar_chart(pivot_lat, stack=False)
     else:
         st.info(
             "No benchmark results found. "
