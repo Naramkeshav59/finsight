@@ -5,6 +5,10 @@ RAG system over SEC EDGAR 10-K filings. Ingests, chunks, embeds, retrieves, and 
 **Companies:** AAPL, JPM, JNJ — fiscal years 2021–2023  
 **Stack:** Ollama + sentence-transformers + ChromaDB (local); Groq supported for cloud deployment
 
+**Demo** (75 s: cited answer, source check, year-over-year diff, benchmark):
+
+<!-- DEMO_VIDEO: paste the github.com/user-attachments/assets/... link on its own line here -->
+
 ---
 
 ## Architecture
