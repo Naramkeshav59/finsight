@@ -150,7 +150,7 @@ Set `GROQ_API_KEY` and the app uses Groq instead of Ollama. No code changes need
 
 | `GROQ_API_KEY` set? | LLM |
 |---|---|
-| Yes | Groq `llama-3.1-8b-instant` |
+| Yes | Groq `qwen/qwen3.8-27b` (override with `GROQ_MODEL`) |
 | No | Local Ollama |
 
 1. Push to GitHub (`data/raw/` is committed; `data/chroma/` is gitignored)

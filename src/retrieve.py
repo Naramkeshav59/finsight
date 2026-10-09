@@ -6,6 +6,19 @@ from rank_bm25 import BM25Okapi
 from embed import EmbeddingIndex, load_config
 
 
+def to_chroma_where(where: dict | None) -> dict | None:
+    """{"ticker": "JNJ", "year": [2022, 2023]} -> ChromaDB's filter syntax.
+
+    ChromaDB rejects a plain dict with more than one key ("expected exactly
+    one operator"), so several conditions must be wrapped in $and, and a
+    list of allowed values becomes $in. BM25 reads the simple form directly.
+    """
+    if not where:
+        return None
+    clauses = [{k: {"$in": v}} if isinstance(v, list) else {k: v} for k, v in where.items()]
+    return clauses[0] if len(clauses) == 1 else {"$and": clauses}
+
+
 class HybridRetriever:
     """
     Supports three retrieval strategies configured in config.yaml:
@@ -60,7 +73,7 @@ class HybridRetriever:
         return ((arr - lo) / (hi - lo)).tolist()
 
     def _vector_search(self, query: str, top_k: int, where: dict | None) -> list[dict]:
-        return self.index.query(query, n_results=top_k, where=where)
+        return self.index.query(query, n_results=top_k, where=to_chroma_where(where))
 
     def _bm25_search(self, query: str, top_k: int, where: dict | None) -> list[dict]:
         scores = self._bm25.get_scores(query.lower().split())
@@ -69,7 +82,8 @@ class HybridRetriever:
             # BM25 has no native metadata filter — zero out non-matching docs
             # so they can't appear in the top-k after argsort
             mask = np.array([
-                all(m.get(k) == v for k, v in where.items())
+                all(m.get(k) in v if isinstance(v, list) else m.get(k) == v
+                    for k, v in where.items())
                 for m in self._bm25_metas
             ])
             scores = np.where(mask, scores, 0.0)

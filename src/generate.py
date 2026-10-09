@@ -18,7 +18,7 @@ def _chat(model: str, messages: list[dict], temperature: float, max_tokens: int)
         from openai import OpenAI
         client = OpenAI(api_key=groq_key, base_url="https://api.groq.com/openai/v1")
         # Groq model names differ from Ollama; map or fall back to a fast default
-        groq_model = os.environ.get("GROQ_MODEL", "llama-3.1-8b-instant")
+        groq_model = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
         resp = client.chat.completions.create(
             model=groq_model,
             messages=messages,

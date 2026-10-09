@@ -15,8 +15,13 @@ sys.path.insert(0, "src")
 
 # expose Streamlit secrets as env vars so generate._chat() picks them up
 for _key in ("GROQ_API_KEY", "GROQ_MODEL"):
-    if _key in st.secrets:
-        os.environ[_key] = st.secrets[_key]
+    try:
+        if _key in st.secrets:
+            os.environ[_key] = st.secrets[_key]
+    except FileNotFoundError:
+        # no secrets.toml (local runs): newer Streamlit raises instead of
+        # returning False, so fall back to plain environment variables
+        break
 
 from embed import EmbeddingIndex, load_config
 from generate import generate, generate_diff
@@ -111,12 +116,13 @@ with tab_chat:
     if st.button("Ask", disabled=not query):
         retriever, config = get_retriever(chunking)
 
-        # build where clause from sidebar selections
-        where: dict | None = None
-        if len(companies) == 1:
-            where = {"ticker": companies[0]}
-        elif companies:
-            where = {"ticker": {"$in": companies}}
+        # sidebar selections as a simple filter; retrieve.py translates it for
+        # ChromaDB ($in / $and) and applies it to BM25 as-is
+        where: dict = {}
+        if companies:
+            where["ticker"] = companies
+        if years:
+            where["year"] = years
 
         with st.spinner("Retrieving and generating..."):
             chunks = retriever.retrieve(query, strategy=retrieval, where=where)
